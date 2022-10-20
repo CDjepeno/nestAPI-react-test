@@ -17,7 +17,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { InternalServerError } from 'src/errors/httpsError';
+import { InternalServerError } from 'nest/src/errors/httpsError';
 
 @ApiTags('Users')
 @Controller('users')
@@ -58,9 +58,9 @@ export class UsersController {
     description: 'enter unique id',
     required: true,
   })
-  // @UseGuards(JwtGauard)
+  @UseGuards(JwtGauard)
   @Get(':id')
-  getUserById(@Param('id') id: string) {
+  getUserById(@Param('id') id: number) {
     try {
       return this.userService.getUsersById(+id);
     } catch (error) {

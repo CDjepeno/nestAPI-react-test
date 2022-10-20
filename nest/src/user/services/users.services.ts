@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/typeorm/entites/User';
+import { User } from 'nest/src/typeorm/entites/User';
 import { Repository } from 'typeorm';
-import { InternalServerError, NotFound } from 'src/errors/httpsError';
+import { InternalServerError, NotFound } from 'nest/src/errors/httpsError';
 import { UpdateUserdto } from '../dtos';
 
 @Injectable()
@@ -14,7 +14,7 @@ export class UsersService {
   async getUsers() {
     try {
       const users = await this.userRepository.find();
-      const tab = JSON.parse(JSON.stringify(users)) 
+      const tab = JSON.parse(JSON.stringify(users));
       console.log(tab);
       if (!users) {
         return new NotFound(`Users not found`);
@@ -27,6 +27,7 @@ export class UsersService {
   }
 
   async getUsersById(id: number) {
+    console.log('user');
     try {
       const user = await this.userRepository.findOne({
         where: {
@@ -36,6 +37,7 @@ export class UsersService {
       if (typeof user === 'undefined') {
         throw new NotFound(`unknow this user`);
       }
+      return user;
     } catch (error) {
       console.error(error);
       throw new InternalServerError('Internal server error !');

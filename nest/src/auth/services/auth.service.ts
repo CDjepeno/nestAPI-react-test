@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import * as argon from 'argon2';
-import { NotFound, Unauthorized } from 'src/errors/httpsError';
-import { User } from 'src/typeorm/entites/User';
-import { CreateUserdto, LoginUserDto } from 'src/user/dtos';
+import { NotFound, Unauthorized } from 'nest/src/errors/httpsError';
+import { User } from 'nest/src/typeorm/entites/User';
+import { CreateUserdto, LoginUserDto } from 'nest/src/user/dtos';
 import { Repository } from 'typeorm';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
