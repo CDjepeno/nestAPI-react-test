@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
+import { User } from './typeorm/entites/User';
 
 @Module({
   imports: [
@@ -11,10 +14,11 @@ import { ConfigModule } from '@nestjs/config';
       username: 'root',
       password: 'Dulonx954*',
       database: 'nestap',
-      entities: [],
+      entities: [User],
       synchronize: true,
     }),
-
+    UserModule,
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),
